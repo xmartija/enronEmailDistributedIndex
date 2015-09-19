@@ -35,5 +35,13 @@ docker $(docker-machine config --swarm master-node) run -d -h rest --name=rest -
 
 DOCKER-COMPOSE
 docker-machine create -d virtualbox --swarm --swarm-discovery consul://$(docker-machine ip coordinator):8500 composer
+  88  docker-machine create -d virtualbox --swarm --swarm-discovery consul://$(docker-machine ip coordinator):8500 composer
+  89  docker $(docker-machine config composer) ps
+  90  docker $(docker-machine config composer) build -t docker-compose github.com/docker/compose
+  91  history
+alias docker-compose='docker $(docker-machine config composer)  run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock -v `pwd`:`pwd` -w `pwd` docker-compose'
+
+alias docker-compose='docker $(docker-machine config composer)  run --rm -ti -v //var/run/docker.sock:/var/run/docker.sock -v /`pwd`:`pwd` -w /`pwd` docker-compose'
+
 
 SOLRCORES
