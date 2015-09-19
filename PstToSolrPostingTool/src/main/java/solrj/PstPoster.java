@@ -14,12 +14,20 @@ import com.pff.PSTFolder;
 import com.pff.PSTMessage;
 
 public class PstPoster {
-    private HttpSolrServer server = new HttpSolrServer("http://10.1.1.221:8983/solr/mailclean");
     private int count = 0;
-    private String file_path = "C:\\Users\\xmartijanicolas\\Desktop\\sally_beck\\sally_beck\\sally_beck_001_1_2_1.pst";
+    HttpSolrServer server;
+    private String file_path;
+
+    public PstPoster(String solrUrl, String filepath) {
+        server = new HttpSolrServer(solrUrl);
+        file_path = filepath;
+    }
+
+    // "http://10.1.1.221:8983/solr/mailclean"
+    // "C:\\Users\\xmartijanicolas\\Desktop\\sally_beck\\sally_beck\\sally_beck_001_1_2_1.pst"
 
     public static void main(String[] args) {
-        PstPoster aPstPoster = new PstPoster();
+        PstPoster aPstPoster = new PstPoster(args[0], args[1]);
         aPstPoster.postDoc();
     }
 
